@@ -8,9 +8,11 @@ Node::~Node() {
 }
 
 void Node::setCost(int value) {
+    this->cost = value;
 }
 
 int Node::getCost() {
+    return this->cost;
 }
 
 string Node::getName() {
