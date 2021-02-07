@@ -11,6 +11,7 @@ class Node {
    private:
     string name;
     int nodeCost;
+    vector<Edge*> edges;
 
    public:
     Node(string name);

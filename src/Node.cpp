@@ -23,9 +23,11 @@ void Node::setNodeCost(int value) {
 }
 
 void Node::addEdge(Edge* edge) {
+    this->edges.push_back(edge);
 }
 
-vector<Edge*>& getConnectedEdges() {
+vector<Edge*>& Node::getConnectedEdges() {
+    return this->edges;
 }
 
 bool Node::equals(Node* other) {
