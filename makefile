@@ -9,11 +9,11 @@ TEST_OUTPUT=$(TEST_BUILD_DIR)/output/testRunner
 SRC_DIR=src
 TEST_DIR=test
 
-_DEPS = hellomake.hpp
+_DEPS = Node.hpp
 
-_OBJ = hellofunc.o
+_OBJ = Node.o
 
-_TEST = test.o
+_TEST = testCatch.o testNode.o
 
 
 
@@ -33,14 +33,14 @@ all: test
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-build: $(OBJ) $(BUILD_DIR)/hellomake.o
+build: $(OBJ) $(BUILD_DIR)/main.o
 	$(CC) -o $(OUTPUT) $^ $(CFLAGS)
 
 $(TEST_BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 build-test: build $(TEST)
-	$(CC) $(CFLAGS) -L$(LIB_DIR) -Wl,-rpath=${CURDIR}/$(LIB_DIR) -Wall -o $(TEST_OUTPUT) $(TEST) -lcatch
+	$(CC) $(CFLAGS) -L$(LIB_DIR) -Wl,-rpath=${CURDIR}/$(LIB_DIR) -Wall -o $(TEST_OUTPUT) $(OBJ) $(TEST) -lcatch
 
 test: build-test
 	$(TEST_OUTPUT)
