@@ -11,15 +11,9 @@ class Dijkstra {
     // run()
 
    public:
-    Dijkstra(/* args */);
+    Dijkstra(Node* source, Node* destination);
     ~Dijkstra();
     // getShortestpath()
 };
-
-Dijkstra::Dijkstra(/* args */) {
-}
-
-Dijkstra::~Dijkstra() {
-}
 
 #endif

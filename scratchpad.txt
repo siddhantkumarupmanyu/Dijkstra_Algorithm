@@ -1,2 +1,4 @@
 i am currently trying to do manual memeory allocation
 change it to automatic with smart pointers
+
+do i need getPrevoiusNode that automatic gives back other node from edgeWithShortestPathToSource??

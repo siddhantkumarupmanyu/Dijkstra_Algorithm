@@ -38,7 +38,30 @@ TEST_CASE("Add Edge") {
     expected.push_back(new Edge(11, new Node("C"), node));
 
     assertEqualEdgeVector(expected, node->getConnectedEdges());
+}
 
+TEST_CASE("source and destination") {
+    Node* node = new Node("A");
+
+    REQUIRE(node->isSource() == false);
+    REQUIRE(node->isDestination() == false);
+
+    node->setSource(true);
+    REQUIRE(node->isSource() == true);
+
+    node->setDestination(true);
+    REQUIRE(node->isDestination() == true);
+}
+
+TEST_CASE("EdgeWithSortestPathToSource") {
+    Node* node = new Node("A");
+
+    REQUIRE(node->getEdgeWithSortestPathToSource() == nullptr);
+
+    Edge* edge = new Edge(20, node, new Node("B"));
+
+    node->setEdgeWithShortestPathToSource(edge);
+    REQUIRE(node->getEdgeWithSortestPathToSource()->equals(edge));
 }
 
 TEST_CASE("Equals") {
