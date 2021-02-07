@@ -12,17 +12,15 @@ Dijkstra::~Dijkstra() {
 
 vector<Node*> Dijkstra::getShortestPath() {
     this->sourceNode->setNodeCost(0);
-    this->transverseList.push_back(this->sourceNode);
     run();
     fillShortestPath();
     return this->shortestPath;
 }
 
 void Dijkstra::run() {
-    bool reached = false;
-    while (true) {
-        Node* currentNode = getSmallestFromTransverseList();
+    Node* currentNode = this->sourceNode;
 
+    while (true) {
         auto edges = currentNode->getConnectedEdges();
 
         for (int i = 0; i < edges.size(); i++) {
@@ -32,14 +30,12 @@ void Dijkstra::run() {
 
             int newCost = currentNode->getNodeCost() + currentEdge->getCost();
 
-            if (otherNode->isDestination()) {
+            if (otherNode->isDestination() && (otherNode->getNodeCost() > newCost)) {
                 otherNode->setNodeCost(newCost);
                 otherNode->setEdgeWithShortestPathToSource(currentEdge);
-                reached = true;
-                break;
             }
 
-            if (otherNode->getNodeCost() > newCost) {
+            else if (otherNode->getNodeCost() > newCost) {
                 otherNode->setNodeCost(newCost);
 
                 otherNode->setTransversed(false);
@@ -50,9 +46,11 @@ void Dijkstra::run() {
             }
         }
 
-        if (reached) {
+        if (this->transverseList.size() == 0) {
             break;
         }
+
+        currentNode = getSmallestFromTransverseList();
     }
 }
 
@@ -61,7 +59,7 @@ Node* Dijkstra::getSmallestFromTransverseList() {
     int index = 0;
     for (int i = 0; i < this->transverseList.size(); i++) {
         auto currentNode = this->transverseList[i];
-        if (currentNode->getNodeCost() > smallest->getNodeCost()) {
+        if (currentNode->getNodeCost() < smallest->getNodeCost()) {
             smallest = currentNode;
             index = i;
         }

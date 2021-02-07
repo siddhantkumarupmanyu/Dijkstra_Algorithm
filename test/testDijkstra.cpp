@@ -1,14 +1,18 @@
+#include <iostream>
+
 #include "Dijkstra.hpp"
 #include "Edge.hpp"
 #include "Node.hpp"
 #include "catch_amalgamated.hpp"
 
+using namespace std;
+
 // TEST_CASE("Dijkstra Constrcutor"){
 //     Node*
 // }
 
-Node *source;
-Node *destination;
+Node* source;
+Node* destination;
 
 void setUpNodes();
 
@@ -17,7 +21,7 @@ void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual);
 TEST_CASE("Dijkstra algorithm") {
     setUpNodes();
 
-    Dijkstra *runner = new Dijkstra(source, destination);
+    Dijkstra* runner = new Dijkstra(source, destination);
 
     vector<Node*> expected;
 
@@ -131,9 +135,9 @@ void setUpNodes() {
     auto J_G = G_J;
     auto J_I = I_J;
 
-    nodeI->addEdge(J_F);
-    nodeI->addEdge(J_G);
-    nodeI->addEdge(J_I);
+    nodeJ->addEdge(J_F);
+    nodeJ->addEdge(J_G);
+    nodeJ->addEdge(J_I);
 
     source = nodeA;
     destination = nodeJ;

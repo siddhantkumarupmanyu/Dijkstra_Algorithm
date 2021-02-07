@@ -50,6 +50,7 @@ void Node::setTransversed(bool value) {
 }
 
 void Node::addEdge(Edge* edge) {
+    // fail fast if one of the node in edge is not this Node
     this->edges.push_back(edge);
 }
 
