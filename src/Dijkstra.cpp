@@ -19,6 +19,7 @@ vector<Node*> Dijkstra::getShortestPath() {
 
 void Dijkstra::run() {
     Node* currentNode = this->sourceNode;
+    bool reached = false;
 
     while (true) {
         auto edges = currentNode->getConnectedEdges();
@@ -33,9 +34,14 @@ void Dijkstra::run() {
             if (otherNode->isDestination() && (otherNode->getNodeCost() > newCost)) {
                 otherNode->setNodeCost(newCost);
                 otherNode->setEdgeWithShortestPathToSource(currentEdge);
+                reached = true;
             }
 
             else if (otherNode->getNodeCost() > newCost) {
+                if (reached && (newCost >= (this->destinationNode->getNodeCost()))) {
+                    continue;
+                }
+
                 otherNode->setNodeCost(newCost);
 
                 otherNode->setTransversed(false);
