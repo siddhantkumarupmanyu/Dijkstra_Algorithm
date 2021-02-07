@@ -2,5 +2,3 @@ edge should have weak reference or shared reference of node
     -currently it's weak
 should Node be equalted on basis of reference or they should have dedicated equals method
     -they should have dedicated method
-
-edge is introducing circular include, remove it

@@ -21,9 +21,10 @@ string Node::getName() {
     return this->name;
 }
 
-// void Node::addNode(weak_ptr<Node> node, int cost) {
-//     this->nodes.insert(pair<weak_ptr<Node>, int>(node, cost));
-// }
+void Node::addNode(weak_ptr<Node> node, int cost) {
+    this->nodes.push_back(node);
+    this->costs.push_back(cost);
+}
 
 bool Node::equals(const shared_ptr<Node> other) {
     if (this->name == other->name) {

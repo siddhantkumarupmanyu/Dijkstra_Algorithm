@@ -19,10 +19,10 @@ TEST_CASE("adding Node To One Adds It To Other") {
     shared_ptr<Node> nodeA = make_shared<Node>("A");
     shared_ptr<Node> nodeB = make_shared<Node>("B");
 
-    // nodeA->addNode(nodeB, 10);
-    // auto nodes = nodeA->getConnectingNodes();
+    nodeA->addNode(nodeB, 10);
+    auto nodes = nodeA->getConnectedNodes();
 
-    // REQUIRE(nodes[0].equals(nodeB))
+    REQUIRE(nodes[0].equals(nodeB))
 }
 
 // TEST_CASE("nodes having connecting edge"){
