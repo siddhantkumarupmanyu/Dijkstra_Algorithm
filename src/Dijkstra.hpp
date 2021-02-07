@@ -8,12 +8,12 @@ class Dijkstra {
    private:
     Node* sourceNode;
     Node* destinationNode;
-    // run()
+    void run();
 
    public:
     Dijkstra(Node* source, Node* destination);
     ~Dijkstra();
-    // getShortestpath()
+    vector<Node*> getShortestPath();
 };
 
 #endif

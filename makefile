@@ -9,11 +9,11 @@ TEST_OUTPUT=$(TEST_BUILD_DIR)/output/testRunner
 SRC_DIR=src
 TEST_DIR=test
 
-_DEPS = Node.hpp Edge.hpp
+_DEPS = Node.hpp Edge.hpp Dijkstra.hpp
 
-_OBJ = Node.o Edge.o
+_OBJ = Node.o Edge.o Dijkstra.o
 
-_TEST = testCatch.o testNode.o testEdge.o
+_TEST = testCatch.o testNode.o testEdge.o testDijkstra.o
 
 
 

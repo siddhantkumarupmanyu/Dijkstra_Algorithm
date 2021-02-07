@@ -8,6 +8,7 @@ Node::Node(string name) {
     this->source = false;
     this->destination = false;
     this->edgeWithShortestPathToSource = nullptr;
+    this->transversed = false;
 }
 
 Node::~Node() {
@@ -39,6 +40,13 @@ bool Node::isDestination() {
 
 void Node::setDestination(bool value) {
     this->destination = value;
+}
+
+bool Node::isTransversed() {
+    return this->transversed;
+}
+void Node::setTransversed(bool value) {
+    this->transversed = value;
 }
 
 void Node::addEdge(Edge* edge) {

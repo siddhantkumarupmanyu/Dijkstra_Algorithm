@@ -14,6 +14,7 @@ class Node {
     vector<Edge*> edges;
     bool source;
     bool destination;
+    bool transversed;
     Edge* edgeWithShortestPathToSource;
 
    public:
@@ -26,6 +27,8 @@ class Node {
     void setSource(bool value);
     bool isDestination();
     void setDestination(bool value);
+    bool isTransversed();
+    void setTransversed(bool value);
     void addEdge(Edge* edge);
     vector<Edge*>& getConnectedEdges();
     void setEdgeWithShortestPathToSource(Edge* edge);

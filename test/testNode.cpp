@@ -64,6 +64,16 @@ TEST_CASE("EdgeWithSortestPathToSource") {
     REQUIRE(node->getEdgeWithSortestPathToSource()->equals(edge));
 }
 
+TEST_CASE("transversed"){
+    Node* node = new Node("A");
+
+    REQUIRE(node->isTransversed() == false);
+
+    node->setTransversed(true);
+
+    REQUIRE(node->isTransversed() == true);
+}
+
 TEST_CASE("Equals") {
     Node* node1a = new Node("A");
     Node* node1b = new Node("A");

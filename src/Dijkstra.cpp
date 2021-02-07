@@ -9,3 +9,10 @@ Dijkstra::Dijkstra(Node* source, Node* destination) {
 
 Dijkstra::~Dijkstra() {
 }
+
+vector<Node*> Dijkstra::getShortestPath(){
+    run();
+}
+void Dijkstra::run(){
+
+}
