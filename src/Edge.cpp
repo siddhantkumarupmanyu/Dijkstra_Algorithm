@@ -33,6 +33,10 @@ Node* Edge::getOtherNode(Node* currentNode) {
     }
 }
 
+bool Edge::contains(Node* node){
+    return this->firstNode->equals(node) || this->secondNode->equals(node);    
+}
+
 bool Edge::equals(Edge* other) {
     bool firstNodeMatched = this->firstNode->equals(other->firstNode) || this->firstNode->equals(other->secondNode);
     bool secondNodeMatched = this->secondNode->equals(other->firstNode) || this->secondNode->equals(other->secondNode);

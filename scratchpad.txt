@@ -1,16 +1,12 @@
 i am currently trying to do manual memeory allocation
 change it to automatic with smart pointers
 
-do i need getPrevoiusNode that automatic gives back other node from edgeWithShortestPathToSource??
-
-destinationNode->getEdgeWithSortestPathToSource()->getOtherNode(destinationNode);
-    - i should make a method in node to get other node
-
 should replace transverseList in Dijkstra to std::list as removeing elements can be expensive if done frequently
 
 // could use iterator based loop in getSmallestFromTransverseList
 
 
-// there is not fail fast in addEdge() if non of the node in edge is this Node
+todo
+// there should be a fail fast in addEdge() if edge does not contain this node
 // i just debugged for 2 hours man 
-// fail fast is very much important
+// fail fast is very important

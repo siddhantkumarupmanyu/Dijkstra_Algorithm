@@ -23,6 +23,19 @@ TEST_CASE("other node") {
     REQUIRE(edge->getOtherNode(nodeB)->equals(nodeA));
 }
 
+TEST_CASE("contains"){
+    Node* nodeA = new Node("A");
+    Node* nodeB = new Node("B");
+    Node* nodeC = new Node("C");
+
+    Edge* edge = new Edge(10, nodeA, nodeB);
+
+    REQUIRE(edge->contains(nodeA) == true);
+    REQUIRE(edge->contains(nodeB) == true);
+    REQUIRE(edge->contains(nodeC) == false);
+
+}
+
 TEST_CASE("equals"){
     Node* nodeA = new Node("A");
     Node* nodeB = new Node("B");

@@ -16,6 +16,7 @@ class Edge {
     Node* getFirstNode();
     Node* getSecondNode();
     Node* getOtherNode(Node* currentNode);
+    bool contains(Node* node);
     bool equals(Edge* other);
 };
 
