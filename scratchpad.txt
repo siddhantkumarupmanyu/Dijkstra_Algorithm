@@ -3,10 +3,11 @@ refactor Dijkstra.cpp into smaller functions
 
 currently getShortestPathFromDestination() return vector by copy should i return it by reference
     -I think it should be returning by copy only
-    -so when Dijkstra class is destroyed the shortest path still remains
+    -so when Dijkstra class is destroyed the shortest path still remains in the calling code
+        as its returned by copying
 
-i should not be doing using namespace std anywhere but let's for now let them remain in .cpp as they are
-not included anywhere in my opinion they do not pollute anything like headers.
+i should not be doing 'using namespace std' anywhere but let's for now let them remain in .cpp as they are
+not included anywhere; in my opinion they do not pollute other files like headers.
 
 
 i am currently trying to do manual memeory allocation
@@ -14,7 +15,7 @@ change it to automatic with smart pointers
 
 do i want to use memeber initilizeres
 
-should replace transverseList in Dijkstra to std::list as removeing elements can be expensive if done frequently
+should replace transverseList in Dijkstra to std::list as removing elements can be expensive if done frequently
 
 // could use iterator based loop in getSmallestFromTransverseList
 
