@@ -12,6 +12,7 @@ class Dijkstra {
     Node* destinationNode;
     std::vector<Node*> transverseList;
     std::vector<Node*> shortestPathFromDestination;
+    void executeAlgorithm();
     void run();
     Node* getSmallestFromTransverseList();
     void addToTransverseList(Node* node);

@@ -7,10 +7,6 @@
 
 using namespace std;
 
-// TEST_CASE("Dijkstra Constrcutor"){
-//     Node*
-// }
-
 Node* source;
 Node* destination;
 
@@ -37,24 +33,24 @@ TEST_CASE("Dijkstra algorithm") {
 
     assertEqualNodeVector(expected, actual);
 }
-// TODO: complete this
-// TEST_CASE("Get Shortest Path To Destination") {
-//     setUpNodes();
 
-//     Dijkstra* runner = new Dijkstra(source, destination);
+TEST_CASE("Get Shortest Path To Destination") {
+    setUpNodes();
 
-//     vector<Node*> expected;
+    Dijkstra* runner = new Dijkstra(source, destination);
 
-//     expected.push_back(new Node("A"));
-//     expected.push_back(new Node("C"));
-//     expected.push_back(new Node("H"));
-//     expected.push_back(new Node("G"));
-//     expected.push_back(new Node("J"));
+    vector<Node*> expected;
 
-//     vector<Node*> actual = runner->getShortestPathToDestination();
+    expected.push_back(new Node("A"));
+    expected.push_back(new Node("C"));
+    expected.push_back(new Node("H"));
+    expected.push_back(new Node("G"));
+    expected.push_back(new Node("J"));
 
-//     assertEqualNodeVector(expected, actual);
-// }
+    vector<Node*> actual = runner->getShortestPathToDestination();
+
+    assertEqualNodeVector(expected, actual);
+}
 
 TEST_CASE("node connected to source have more cost in its other edges") {
     setUpNodes_MoreCostInOtherEdges();

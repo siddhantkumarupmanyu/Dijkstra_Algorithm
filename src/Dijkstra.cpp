@@ -15,18 +15,27 @@ Dijkstra::~Dijkstra() {
 }
 
 vector<Node*> Dijkstra::getShortestPathFromDestination() {
-    this->sourceNode->setNodeCost(0);
-    run();
-    fillShortestPath();
+    if (shortestPathFromDestination.empty()) {
+        executeAlgorithm();
+    }
+
     return this->shortestPathFromDestination;
 }
 
 vector<Node*> Dijkstra::getShortestPathToDestination() {
-    // TODO: complete this
-    
+    if (shortestPathFromDestination.empty()) {
+        executeAlgorithm();
+    }
+
     vector<Node*> shortestPathToDestination(this->shortestPathFromDestination);
     reverse(shortestPathToDestination.begin(), shortestPathToDestination.end());
     return shortestPathToDestination;
+}
+
+void Dijkstra::executeAlgorithm() {
+    this->sourceNode->setNodeCost(0);
+    run();
+    fillShortestPath();
 }
 
 void Dijkstra::run() {
