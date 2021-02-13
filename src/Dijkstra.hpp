@@ -11,7 +11,7 @@ class Dijkstra {
     Node* sourceNode;
     Node* destinationNode;
     std::vector<Node*> transverseList;
-    std::vector<Node*> shortestPath;
+    std::vector<Node*> shortestPathFromDestination;
     void run();
     Node* getSmallestFromTransverseList();
     void addToTransverseList(Node* node);
@@ -20,7 +20,8 @@ class Dijkstra {
    public:
     Dijkstra(Node* source, Node* destination);
     ~Dijkstra();
-    std::vector<Node*> getShortestPath();
+    std::vector<Node*> getShortestPathFromDestination();
+    std::vector<Node*> getShortestPathToDestination();
 };
 
 #endif

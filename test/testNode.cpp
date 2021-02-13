@@ -7,6 +7,8 @@
 
 using namespace std;
 
+static const int MAX_INT = std::numeric_limits<int>::max();
+
 void assertEqualEdgeVector(vector<Edge*>& expected, vector<Edge*>& actual) {
     REQUIRE(expected.size() == actual.size());
 
@@ -19,7 +21,12 @@ TEST_CASE("Node constructor") {
     Node* node = new Node("A");
     REQUIRE(node->getName() == "A");
 
-    REQUIRE(node->getNodeCost() == std::numeric_limits<int>::max());
+    REQUIRE(node->getNodeCost() == MAX_INT);
+    REQUIRE(node->isSource() == false);
+    REQUIRE(node->isDestination() == false);
+    REQUIRE(node->getEdgeWithSortestPathToSource() == nullptr);
+    REQUIRE(node->getEdgeWithSortestPathToSource() == nullptr);
+    REQUIRE(node->isTransversed() == false);
 }
 
 TEST_CASE("Node Cost") {
@@ -27,6 +34,19 @@ TEST_CASE("Node Cost") {
 
     node->setNodeCost(4);
     REQUIRE(node->getNodeCost() == 4);
+}
+
+TEST_CASE("Source and Destination") {
+    Node* node = new Node("A");
+
+    REQUIRE(node->isSource() == false);
+    REQUIRE(node->isDestination() == false);
+
+    node->setSource(true);
+    REQUIRE(node->isSource() == true);
+
+    node->setDestination(true);
+    REQUIRE(node->isDestination() == true);
 }
 
 TEST_CASE("Add Edge") {
@@ -42,20 +62,7 @@ TEST_CASE("Add Edge") {
     assertEqualEdgeVector(expected, node->getConnectedEdges());
 }
 
-TEST_CASE("source and destination") {
-    Node* node = new Node("A");
-
-    REQUIRE(node->isSource() == false);
-    REQUIRE(node->isDestination() == false);
-
-    node->setSource(true);
-    REQUIRE(node->isSource() == true);
-
-    node->setDestination(true);
-    REQUIRE(node->isDestination() == true);
-}
-
-TEST_CASE("EdgeWithSortestPathToSource") {
+TEST_CASE("Edge With Sortest Path To Source") {
     Node* node = new Node("A");
 
     REQUIRE(node->getEdgeWithSortestPathToSource() == nullptr);
@@ -66,7 +73,7 @@ TEST_CASE("EdgeWithSortestPathToSource") {
     REQUIRE(node->getEdgeWithSortestPathToSource()->equals(edge));
 }
 
-TEST_CASE("transversed"){
+TEST_CASE("Transversed") {
     Node* node = new Node("A");
 
     REQUIRE(node->isTransversed() == false);

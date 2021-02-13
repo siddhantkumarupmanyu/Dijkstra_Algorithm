@@ -13,7 +13,7 @@ TEST_CASE("Edge Constructor") {
     REQUIRE(edge->getSecondNode()->equals(nodeB));
 }
 
-TEST_CASE("other node") {
+TEST_CASE("Other Node") {
     Node* nodeA = new Node("A");
     Node* nodeB = new Node("B");
 
@@ -23,7 +23,7 @@ TEST_CASE("other node") {
     REQUIRE(edge->getOtherNode(nodeB)->equals(nodeA));
 }
 
-TEST_CASE("contains"){
+TEST_CASE("Contains"){
     Node* nodeA = new Node("A");
     Node* nodeB = new Node("B");
     Node* nodeC = new Node("C");

@@ -18,6 +18,8 @@ void setUpNodes();
 
 void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual);
 
+void setUpNodes_MoreCostInOtherEdges();
+
 TEST_CASE("Dijkstra algorithm") {
     setUpNodes();
 
@@ -31,7 +33,41 @@ TEST_CASE("Dijkstra algorithm") {
     expected.push_back(new Node("C"));
     expected.push_back(new Node("A"));
 
-    vector<Node*> actual = runner->getShortestPath();  // should return copy of vector containing shortest path
+    vector<Node*> actual = runner->getShortestPathFromDestination();
+
+    assertEqualNodeVector(expected, actual);
+}
+// TODO: complete this
+// TEST_CASE("Get Shortest Path To Destination") {
+//     setUpNodes();
+
+//     Dijkstra* runner = new Dijkstra(source, destination);
+
+//     vector<Node*> expected;
+
+//     expected.push_back(new Node("A"));
+//     expected.push_back(new Node("C"));
+//     expected.push_back(new Node("H"));
+//     expected.push_back(new Node("G"));
+//     expected.push_back(new Node("J"));
+
+//     vector<Node*> actual = runner->getShortestPathToDestination();
+
+//     assertEqualNodeVector(expected, actual);
+// }
+
+TEST_CASE("node connected to source have more cost in its other edges") {
+    setUpNodes_MoreCostInOtherEdges();
+
+    Dijkstra* runner = new Dijkstra(source, destination);
+
+    vector<Node*> expected;
+    expected.push_back(new Node("E"));
+    expected.push_back(new Node("C"));
+    expected.push_back(new Node("B"));
+    expected.push_back(new Node("A"));
+
+    vector<Node*> actual = runner->getShortestPathFromDestination();
 
     assertEqualNodeVector(expected, actual);
 }
@@ -42,6 +78,41 @@ void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual) {
     for (int i = 0; i < actual.size(); i++) {
         REQUIRE(expected[i]->equals(actual[i]));
     }
+}
+
+void setUpNodes_MoreCostInOtherEdges() {
+    auto nodeA = new Node("A");
+    auto nodeB = new Node("B");
+    auto nodeC = new Node("C");
+    auto nodeD = new Node("D");
+    auto nodeE = new Node("E");
+
+    auto A_B = new Edge(1, nodeA, nodeB);
+    nodeA->addEdge(A_B);
+
+    auto B_A = A_B;
+    auto B_C = new Edge(5, nodeB, nodeC);
+    auto B_D = new Edge(6, nodeB, nodeD);
+    nodeB->addEdge(B_C);
+    nodeB->addEdge(B_D);
+
+    auto C_B = B_C;
+    auto C_E = new Edge(2, nodeC, nodeE);
+    nodeC->addEdge(C_B);
+    nodeC->addEdge(C_E);
+
+    auto D_B = B_D;
+    auto D_E = new Edge(2, nodeD, nodeE);
+    nodeD->addEdge(D_B);
+    nodeD->addEdge(D_E);
+
+    auto E_C = C_E;
+    auto E_D = D_E;
+    nodeE->addEdge(E_C);
+    nodeE->addEdge(E_D);
+
+    source = nodeA;
+    destination = nodeE;
 }
 
 void setUpNodes() {

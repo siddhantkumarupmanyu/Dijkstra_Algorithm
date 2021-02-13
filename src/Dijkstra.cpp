@@ -1,5 +1,7 @@
 #include "Dijkstra.hpp"
 
+#include <algorithm>
+
 using namespace std;
 
 Dijkstra::Dijkstra(Node* source, Node* destination) {
@@ -12,11 +14,19 @@ Dijkstra::Dijkstra(Node* source, Node* destination) {
 Dijkstra::~Dijkstra() {
 }
 
-vector<Node*> Dijkstra::getShortestPath() {
+vector<Node*> Dijkstra::getShortestPathFromDestination() {
     this->sourceNode->setNodeCost(0);
     run();
     fillShortestPath();
-    return this->shortestPath;
+    return this->shortestPathFromDestination;
+}
+
+vector<Node*> Dijkstra::getShortestPathToDestination() {
+    // TODO: complete this
+    
+    vector<Node*> shortestPathToDestination(this->shortestPathFromDestination);
+    reverse(shortestPathToDestination.begin(), shortestPathToDestination.end());
+    return shortestPathToDestination;
 }
 
 void Dijkstra::run() {
@@ -31,20 +41,20 @@ void Dijkstra::run() {
 
             Node* otherNode = currentEdge->getOtherNode(currentNode);
 
-            int newCost = currentNode->getNodeCost() + currentEdge->getCost();
+            int otherNodeNewCost = currentNode->getNodeCost() + currentEdge->getCost();
 
-            if (otherNode->isDestination() && (otherNode->getNodeCost() > newCost)) {
-                otherNode->setNodeCost(newCost);
+            if (otherNode->isDestination() && (otherNode->getNodeCost() > otherNodeNewCost)) {
+                otherNode->setNodeCost(otherNodeNewCost);
                 otherNode->setEdgeWithShortestPathToSource(currentEdge);
                 reached = true;
             }
 
-            else if (otherNode->getNodeCost() > newCost) {
-                if (reached && (newCost >= (this->destinationNode->getNodeCost()))) {
+            else if (otherNode->getNodeCost() > otherNodeNewCost) {
+                if (reached && (otherNodeNewCost >= (this->destinationNode->getNodeCost()))) {
                     continue;
                 }
 
-                otherNode->setNodeCost(newCost);
+                otherNode->setNodeCost(otherNodeNewCost);
 
                 otherNode->setTransversed(false);
 
@@ -83,12 +93,12 @@ Node* Dijkstra::getSmallestFromTransverseList() {
 void Dijkstra::fillShortestPath() {
     Node* currentNode = destinationNode;
     while (!currentNode->isSource()) {
-        shortestPath.push_back(currentNode);
+        shortestPathFromDestination.push_back(currentNode);
         auto edge = currentNode->getEdgeWithSortestPathToSource();
         currentNode = edge->getOtherNode(currentNode);
     }
 
-    shortestPath.push_back(this->sourceNode);
+    shortestPathFromDestination.push_back(this->sourceNode);
 }
 
 void Dijkstra::addToTransverseList(Node* node) {

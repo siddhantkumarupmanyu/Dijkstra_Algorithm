@@ -1,7 +1,9 @@
 
 refactor Dijkstra.cpp into smaller functions
 
-
+currently getShortestPathFromDestination() return vector by copy should i return it by reference
+    -I think it should be returning by copy only
+    -so when Dijkstra class is destroyed the shortest path still remains
 
 i should not be doing using namespace std anywhere but let's for now let them remain in .cpp as they are
 not included anywhere in my opinion they do not pollute anything like headers.
