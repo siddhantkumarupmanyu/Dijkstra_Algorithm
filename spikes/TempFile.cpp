@@ -1,12 +1,15 @@
+#include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>
 
+namespace fs = std::experimental::filesystem;
+
 using namespace std;
 
-void createFile() {
+void createFile(string fileName) {
     fstream tempFile;
-    tempFile.open("tempFile.txt", ios::out);
+    tempFile.open(fileName, ios::out);
 
     tempFile << "Hello World 1 ...\n";
     tempFile << "Hello World 2 ...\n";
@@ -16,8 +19,8 @@ void createFile() {
     tempFile.close();
 }
 
-void readFile() {
-    fstream tempFile("tempFile.txt", ios::in);
+void readFile(string fileName) {
+    fstream tempFile(fileName, ios::in);
 
     tempFile.seekg(0, ios::beg);
 
@@ -30,12 +33,21 @@ void readFile() {
     tempFile.close();
 }
 
-void deleteFile(){
-    
+void deleteFile(string fileName) {
+    try {
+        if (fs::remove(fileName))
+            std::cout << "file " << fileName << " deleted.\n";
+        else
+            std::cout << "file " << fileName << " not found.\n";
+    } catch (const fs::filesystem_error& err) {
+        std::cout << "filesystem error: " << err.what() << '\n';
+    }
 }
 
 int main() {
-    createFile();
-    readFile();
-    deleteFile();
+    string directory = fs::temp_directory_path();
+    string fileName = directory + "/tempFile.txt";
+    createFile(fileName);
+    readFile(fileName);
+    deleteFile(fileName);
 }
