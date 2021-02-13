@@ -68,6 +68,30 @@ TEST_CASE("node connected to source have more cost in its other edges") {
     assertEqualNodeVector(expected, actual);
 }
 
+TEST_CASE("Rerun the Algorithm") {
+    setUpNodes();
+
+    vector<Node*> expected;
+    expected.push_back(new Node("J"));
+    expected.push_back(new Node("G"));
+    expected.push_back(new Node("H"));
+    expected.push_back(new Node("C"));
+    expected.push_back(new Node("A"));
+
+    Dijkstra* runner = new Dijkstra(source, destination);
+    vector<Node*> actual = runner->getShortestPathFromDestination();
+    assertEqualNodeVector(expected, actual);
+
+    auto nodeL = new Node("L");
+    auto A_L = new Edge(10, source, nodeL);
+    nodeL->addEdge(A_L);
+    source->addEdge(A_L);
+
+    Dijkstra* reRun = new Dijkstra(source, destination);
+    vector<Node*> actualReRun = reRun->getShortestPathFromDestination();
+    assertEqualNodeVector(expected, actualReRun);
+}
+
 void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual) {
     REQUIRE(expected.size() == actual.size());
 
