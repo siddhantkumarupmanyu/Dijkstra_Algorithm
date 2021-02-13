@@ -1,6 +1,6 @@
 CC=g++
 
-CFLAGS = -I.
+CFLAGS = -I. 
 
-TempFile:
-	$(CC) -o TempFile TempFile.cpp $(CFLAGS)
+TempFile: TempFile.cpp
+	$(CC) -o TempFile TempFile.cpp $(CFLAGS) 
