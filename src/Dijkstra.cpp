@@ -1,5 +1,7 @@
 #include "Dijkstra.hpp"
 
+using namespace std;
+
 Dijkstra::Dijkstra(Node* source, Node* destination) {
     this->sourceNode = source;
     this->destinationNode = destination;

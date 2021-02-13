@@ -3,24 +3,22 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Edge;
 
 class Node {
    private:
-    string name;
+    std::string name;
     int nodeCost;
-    vector<Edge*> edges;
+    std::vector<Edge*> edges;
     bool source;
     bool destination;
     bool transversed;
     Edge* edgeWithShortestPathToSource;
 
    public:
-    Node(string name);
+    Node(std::string name);
     ~Node();
-    string getName();
+    std::string getName();
     int getNodeCost();
     void setNodeCost(int value);
     bool isSource();
@@ -30,7 +28,7 @@ class Node {
     bool isTransversed();
     void setTransversed(bool value);
     void addEdge(Edge* edge);
-    vector<Edge*>& getConnectedEdges();
+    std::vector<Edge*>& getConnectedEdges();
     void setEdgeWithShortestPathToSource(Edge* edge);
     Edge* getEdgeWithSortestPathToSource();
     bool equals(Node* other);

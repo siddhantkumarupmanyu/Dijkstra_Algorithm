@@ -1,5 +1,16 @@
+
+refactor Dijkstra.cpp into smaller functions
+
+
+
+i should not be doing using namespace std anywhere but let's for now let them remain in .cpp as they are
+not included anywhere in my opinion they do not pollute anything like headers.
+
+
 i am currently trying to do manual memeory allocation
 change it to automatic with smart pointers
+
+do i want to use memeber initilizeres
 
 should replace transverseList in Dijkstra to std::list as removeing elements can be expensive if done frequently
 

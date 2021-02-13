@@ -2,6 +2,8 @@
 
 #include <limits>
 
+using namespace std;
+
 Node::Node(string name) {
     this->name = name;
     this->nodeCost = std::numeric_limits<int>::max();

@@ -5,6 +5,8 @@
 #include "Node.hpp"
 #include "catch_amalgamated.hpp"
 
+using namespace std;
+
 void assertEqualEdgeVector(vector<Edge*>& expected, vector<Edge*>& actual) {
     REQUIRE(expected.size() == actual.size());
 
