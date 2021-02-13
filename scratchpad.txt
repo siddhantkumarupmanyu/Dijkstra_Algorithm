@@ -1,4 +1,9 @@
 
+should Reader take in FILE* or fileName
+    -if it takes a filename it is Reader's responsiblily to close the file
+    -if it takes a FILE* its not Reader's responsiblily.
+    -for now, I think it should take the fileName.
+
 refactor Dijkstra.cpp into smaller functions
 
 currently getShortestPathFromDestination() return vector by copy should i return it by reference
@@ -13,7 +18,7 @@ not included anywhere; in my opinion they do not pollute other files like header
 i am currently trying to do manual memeory allocation
 change it to automatic with smart pointers
 
-do i want to use memeber initilizeres
+do i want to use memeber initilizeres?
 
 should replace transverseList in Dijkstra to std::list as removing elements can be expensive if done frequently
 

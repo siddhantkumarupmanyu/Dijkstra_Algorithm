@@ -3,4 +3,4 @@ CC=g++
 CFLAGS = -I. 
 
 TempFile: TempFile.cpp
-	$(CC) -o TempFile TempFile.cpp $(CFLAGS) 
+	$(CC) -o TempFile TempFile.cpp $(CFLAGS) && ./TempFile
