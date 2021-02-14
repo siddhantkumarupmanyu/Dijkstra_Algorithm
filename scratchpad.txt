@@ -1,4 +1,5 @@
 
+I do not know a better way to test Or design Parser, currently
 
 how do i want to handle file that do not exists
     -Create a file and check if its a valid file and act accordingly.

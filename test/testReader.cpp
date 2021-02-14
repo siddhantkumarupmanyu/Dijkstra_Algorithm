@@ -14,10 +14,20 @@ static void createTempFile(string filePath);
 
 static void deleteTempFile(string filePath);
 
-TEST_CASE("Reader") {
+string filePath;
+
+void setUp() {
     string directory = fs::temp_directory_path();
-    string filePath = directory + "/tempFile.txt";
+    filePath = directory + "/tempFile.txt";
     createTempFile(filePath);
+}
+
+void tearDown() {
+    deleteTempFile(filePath);
+}
+
+TEST_CASE("Reader") {
+    setUp();
 
     Reader* reader = new Reader(filePath);
 
@@ -26,13 +36,11 @@ TEST_CASE("Reader") {
     REQUIRE(reader->nextLine() == "   Line 3...");
     REQUIRE(reader->nextLine() == "Line 4     ...");
 
-    deleteTempFile(filePath);
+    tearDown();
 }
 
 TEST_CASE("\\n when newline is encountered") {
-    string directory = fs::temp_directory_path();
-    string filePath = directory + "/tempFile.txt";
-    createTempFile(filePath);
+    setUp();
 
     Reader* reader = new Reader(filePath);
 
@@ -41,12 +49,12 @@ TEST_CASE("\\n when newline is encountered") {
     REQUIRE(reader->nextLine() == "   Line 3...");
     REQUIRE(reader->nextLine() == "Line 4     ...");
     REQUIRE(reader->nextLine() == "\n");
+
+    tearDown();
 }
 
 TEST_CASE("empty string when reached EOF") {
-    string directory = fs::temp_directory_path();
-    string filePath = directory + "/tempFile.txt";
-    createTempFile(filePath);
+    setUp();
 
     Reader* reader = new Reader(filePath);
 
@@ -58,10 +66,10 @@ TEST_CASE("empty string when reached EOF") {
     REQUIRE(reader->nextLine() == "Line 6");
     REQUIRE(reader->nextLine() == "");
 
-    deleteTempFile(filePath);
+    tearDown();
 }
 
-void createTempFile(string filePath) {
+static void createTempFile(string filePath) {
     fstream tempFile;
     tempFile.open(filePath, ios::out);
 
@@ -75,7 +83,7 @@ void createTempFile(string filePath) {
     tempFile.close();
 }
 
-void deleteTempFile(string filePath) {
+static void deleteTempFile(string filePath) {
     try {
         fs::remove(filePath);
     } catch (const fs::filesystem_error& err) {
