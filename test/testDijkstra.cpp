@@ -10,11 +10,11 @@ using namespace std;
 Node* source;
 Node* destination;
 
-void setUpNodes();
+static void setUpNodes();
 
-void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual);
+static void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual);
 
-void setUpNodes_MoreCostInOtherEdges();
+static void setUpNodes_MoreCostInOtherEdges();
 
 TEST_CASE("Dijkstra algorithm") {
     setUpNodes();

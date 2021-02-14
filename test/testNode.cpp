@@ -9,7 +9,7 @@ using namespace std;
 
 static const int MAX_INT = std::numeric_limits<int>::max();
 
-void assertEqualEdgeVector(vector<Edge*>& expected, vector<Edge*>& actual) {
+static void assertEqualEdgeVector(vector<Edge*>& expected, vector<Edge*>& actual) {
     REQUIRE(expected.size() == actual.size());
 
     for (int i = 0; i < actual.size(); i++) {

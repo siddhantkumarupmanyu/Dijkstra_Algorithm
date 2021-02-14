@@ -10,9 +10,9 @@ namespace fs = std::experimental::filesystem;
 
 using namespace std;
 
-void createTempFile(string filePath);
+static void createTempFile(string filePath);
 
-void deleteTempFile(string filePath);
+static void deleteTempFile(string filePath);
 
 TEST_CASE("Reader") {
     string directory = fs::temp_directory_path();
