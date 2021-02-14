@@ -9,11 +9,11 @@ TEST_OUTPUT=$(TEST_BUILD_DIR)/output/testRunner
 SRC_DIR=src
 TEST_DIR=test
 
-_DEPS = Node.hpp Edge.hpp Dijkstra.hpp
+_DEPS = Node.hpp Edge.hpp Dijkstra.hpp Reader.hpp
 
-_OBJ = Node.o Edge.o Dijkstra.o
+_OBJ = Node.o Edge.o Dijkstra.o Reader.o
 
-_TEST = testCatch.o testNode.o testEdge.o testDijkstra.o
+_TEST = testCatch.o testNode.o testEdge.o testDijkstra.o testReader.o
 
 
 
@@ -24,6 +24,8 @@ TEST = $(patsubst %,$(TEST_BUILD_DIR)/%,$(_TEST))
 LIB_DIR=lib
 
 CFLAGS=-I$(SRC_DIR) -I$(LIB_DIR)
+
+TEST_LIBS = -lcatch -lstdc++fs
 
 
 .PHONY: all clean build test
@@ -40,7 +42,7 @@ $(TEST_BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 build-test: build $(TEST)
-	$(CC) $(CFLAGS) -L$(LIB_DIR) -Wl,-rpath=${CURDIR}/$(LIB_DIR) -Wall -o $(TEST_OUTPUT) $(OBJ) $(TEST) -lcatch
+	$(CC) $(CFLAGS) -L$(LIB_DIR) -Wl,-rpath=${CURDIR}/$(LIB_DIR) -Wall -o $(TEST_OUTPUT) $(OBJ) $(TEST) $(TEST_LIBS)
 
 test: build-test
 	$(TEST_OUTPUT)
