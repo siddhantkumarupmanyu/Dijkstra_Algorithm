@@ -13,6 +13,13 @@ Reader::~Reader() {
 
 string Reader::nextLine() {
     string line;
-    getline(this->file, line);
+
+    if (!getline(this->file, line)) {
+        return "";
+    }
+    if (line.empty()) {
+        return "\n";
+    }
+
     return line;
 }

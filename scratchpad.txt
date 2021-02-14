@@ -1,8 +1,13 @@
 
-should Reader take in FILE* or fileName
-    -if it takes a filename it is Reader's responsiblily to close the file
-    -if it takes a FILE* its not Reader's responsiblily.
-    -for now, I think it should take the fileName.
+
+how do i want to handle file that do not exists
+    -Create a file and check if its a valid file and act accordingly.
+    // https://stackoverflow.com/questions/1647557/ifstream-how-to-tell-if-specified-file-doesnt-exist
+    -for now lets just ignore it
+
+there is primitive obsession when passing filesPaths
+    -In my opinion there should be a File class that handles that.
+    -but for now let it remain as it is.
 
 refactor Dijkstra.cpp into smaller functions
 
@@ -15,10 +20,10 @@ i should not be doing 'using namespace std' anywhere but let's for now let them 
 not included anywhere; in my opinion they do not pollute other files like headers.
 
 
-i am currently trying to do manual memeory allocation
+i am currently trying to do manual memory allocation
 change it to automatic with smart pointers
 
-do i want to use memeber initilizeres?
+do i want to use member initializers?
 
 should replace transverseList in Dijkstra to std::list as removing elements can be expensive if done frequently
 
