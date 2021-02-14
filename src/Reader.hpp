@@ -14,6 +14,7 @@ class Reader {
     Reader(std::string filePath);
     ~Reader();
     std::string nextLine();
+    void reset();
 };
 
 #endif

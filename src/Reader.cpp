@@ -23,3 +23,7 @@ string Reader::nextLine() {
 
     return line;
 }
+
+void Reader::reset() {
+    this->file.seekg(0, ios::beg);
+}

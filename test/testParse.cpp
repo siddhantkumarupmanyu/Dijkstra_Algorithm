@@ -1,8 +1,10 @@
 #include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 #include "Graph.hpp"
+#include "Utils.hpp"
 #include "catch_amalgamated.hpp"
 
 namespace fs = std::experimental::filesystem;
@@ -13,18 +15,41 @@ static void createTempFileWithText(string filePath, string text);
 
 static void deleteTempFile(string filePath);
 
-TEST_CASE("Parser") {
+string filePath;
+Graph* graph;
+
+static void setUp() {
     string directory = fs::temp_directory_path();
-    string filePath = directory + "/tempFile.txt";
-    Graph* graph = new Graph();
-    // todo
-    // Parser* parser = new Parser(filePath);
+    filePath = directory + "/tempFile.txt";
+    graph = new Graph();
+}
 
-    // parser.parseInto(graph);
+static void tearDown() {
+    deleteTempFile(filePath);
+    delete graph;
+}
 
-    // REQUIRE(graph->getNodes());
+TEST_CASE("Parser") {
+    setUp();
 
-    // deleteTempFile(filePath);
+    stringstream ss;
+
+    ss << "A" << endl;
+    ss << "\t10 B" << endl;
+    ss << "B" << endl;
+    ss << "\t10 A";
+
+    createTempFileWithText(filePath, ss.str());
+
+    Parser* parser = new Parser(filePath);
+
+    parser.parseInto(graph);
+
+    vector<Node*> expected;
+
+    assertEqualNodeVector(expected, graph->getNodes());
+
+    tearDown();
 }
 
 static void createTempFileWithText(string filePath, string text) {

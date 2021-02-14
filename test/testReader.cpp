@@ -16,13 +16,13 @@ static void deleteTempFile(string filePath);
 
 string filePath;
 
-void setUp() {
+static void setUp() {
     string directory = fs::temp_directory_path();
     filePath = directory + "/tempFile.txt";
     createTempFile(filePath);
 }
 
-void tearDown() {
+static void tearDown() {
     deleteTempFile(filePath);
 }
 
@@ -67,6 +67,19 @@ TEST_CASE("empty string when reached EOF") {
     REQUIRE(reader->nextLine() == "");
 
     tearDown();
+}
+
+TEST_CASE("Reset Reader") {
+    setUp();
+
+    Reader* reader = new Reader(filePath);
+
+    REQUIRE(reader->nextLine() == "Line 1...");
+    REQUIRE(reader->nextLine() == "Line 2 ...");
+
+    reader->reset();
+    REQUIRE(reader->nextLine() == "Line 1...");
+    REQUIRE(reader->nextLine() == "Line 2 ...");
 }
 
 static void createTempFile(string filePath) {
