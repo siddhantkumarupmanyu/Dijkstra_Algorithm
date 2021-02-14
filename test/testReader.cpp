@@ -14,7 +14,7 @@ static void createTempFile(string filePath);
 
 static void deleteTempFile(string filePath);
 
-string filePath;
+static string filePath;
 
 static void setUp() {
     string directory = fs::temp_directory_path();

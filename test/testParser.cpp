@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "Graph.hpp"
+#include "Parser.hpp"
 #include "Utils.hpp"
 #include "catch_amalgamated.hpp"
 
@@ -15,8 +16,8 @@ static void createTempFileWithText(string filePath, string text);
 
 static void deleteTempFile(string filePath);
 
-string filePath;
-Graph* graph;
+static string filePath;
+static Graph* graph;
 
 static void setUp() {
     string directory = fs::temp_directory_path();
@@ -29,7 +30,7 @@ static void tearDown() {
     delete graph;
 }
 
-TEST_CASE("Parser") {
+TEST_CASE("Simple Parse") {
     setUp();
 
     stringstream ss;
@@ -43,11 +44,17 @@ TEST_CASE("Parser") {
 
     Parser* parser = new Parser(filePath);
 
-    parser.parseInto(graph);
+    parser->parseInto(graph);
 
-    vector<Node*> expected;
+    vector<Node*> expectedNode;
+    expectedNode.push_back(new Node("A"));
+    expectedNode.push_back(new Node("B"));
 
-    assertEqualNodeVector(expected, graph->getNodes());
+    vector<Edge*> expectedEdge;
+    expectedEdge.push_back(new Edge(10, new Node("A"), new Node("B")));
+
+    assertEqualNodeVector(expectedNode, graph->getNodes());
+    assertEqualEdgeVector(expectedEdge, graph->getEdges());
 
     tearDown();
 }
