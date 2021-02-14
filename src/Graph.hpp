@@ -12,6 +12,8 @@ class Graph {
     std::vector<Edge*> edges;
     Node* sourceNode;
     Node* destinationNode;
+    Node* findNode(Node* node);
+    Edge* findEdge(Edge* edge);
     void deallocateNodes();
     void deallocateEdges();
 
@@ -24,6 +26,8 @@ class Graph {
     std::vector<Edge*> getEdges();
     Node* getSourceNode();
     Node* getDestinationNode();
+    Node* getOrAddNode(Node* node);
+    Edge* getOrAddEdge(Edge* edge);
 };
 
 #endif

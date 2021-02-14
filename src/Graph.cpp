@@ -38,6 +38,42 @@ Node* Graph::getDestinationNode() {
     return this->destinationNode;
 }
 
+Node* Graph::getOrAddNode(Node* node) {
+    Node* existingNode = findNode(node);
+    if (!existingNode) {
+        this->addNode(node);
+        existingNode = node;
+    }
+    return existingNode;
+}
+
+Node* Graph::findNode(Node* node) {
+    for (auto currentNode : this->nodes) {
+        if (currentNode->equals(node)) {
+            return currentNode;
+        }
+    }
+    return nullptr;
+}
+
+Edge* Graph::getOrAddEdge(Edge* edge) {
+    Edge* existingEdge = findEdge(edge);
+    if (!existingEdge) {
+        this->addEdge(edge);
+        existingEdge = edge;
+    }
+    return existingEdge;
+}
+
+Edge* Graph::findEdge(Edge* edge) {
+    for (auto currentEdge : this->edges) {
+        if (currentEdge->equals(edge)) {
+            return currentEdge;
+        }
+    }
+    return nullptr;
+}
+
 void Graph::deallocateNodes() {
     for (int i = 0; i < this->nodes.size(); i++) {
         delete this->nodes[i];

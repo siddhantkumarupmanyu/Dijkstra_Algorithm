@@ -1,4 +1,8 @@
 
+//optimization
+what i could do instead of finding Node/Edge every getOrAdd();
+    -just add all of the node/edges first and then remove duplicate from them
+
 I should not be doing inline in Utils.hpp,
     -but if the Util function increases I will create a separate .cpp for Utils
 
