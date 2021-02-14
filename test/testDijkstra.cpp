@@ -3,6 +3,7 @@
 #include "Dijkstra.hpp"
 #include "Edge.hpp"
 #include "Node.hpp"
+#include "Utils.hpp"
 #include "catch_amalgamated.hpp"
 
 using namespace std;
@@ -11,8 +12,6 @@ Node* source;
 Node* destination;
 
 static void setUpNodes();
-
-static void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual);
 
 static void setUpNodes_MoreCostInOtherEdges();
 
@@ -90,14 +89,6 @@ TEST_CASE("Rerun the Algorithm") {
     Dijkstra* reRun = new Dijkstra(source, destination);
     vector<Node*> actualReRun = reRun->getShortestPathFromDestination();
     assertEqualNodeVector(expected, actualReRun);
-}
-
-void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual) {
-    REQUIRE(expected.size() == actual.size());
-
-    for (int i = 0; i < actual.size(); i++) {
-        REQUIRE(expected[i]->equals(actual[i]));
-    }
 }
 
 void setUpNodes_MoreCostInOtherEdges() {

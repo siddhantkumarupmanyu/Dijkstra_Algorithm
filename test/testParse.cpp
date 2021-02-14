@@ -16,10 +16,15 @@ static void deleteTempFile(string filePath);
 TEST_CASE("Parser") {
     string directory = fs::temp_directory_path();
     string filePath = directory + "/tempFile.txt";
+    Graph* graph = new Graph();
+    // todo
+    // Parser* parser = new Parser(filePath);
 
+    // parser.parseInto(graph);
 
+    // REQUIRE(graph->getNodes());
 
-    // Parser* parser = new Parser();
+    // deleteTempFile(filePath);
 }
 
 static void createTempFileWithText(string filePath, string text) {

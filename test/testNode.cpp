@@ -3,19 +3,12 @@
 
 #include "Edge.hpp"
 #include "Node.hpp"
+#include "Utils.hpp"
 #include "catch_amalgamated.hpp"
 
 using namespace std;
 
 static const int MAX_INT = std::numeric_limits<int>::max();
-
-static void assertEqualEdgeVector(vector<Edge*>& expected, vector<Edge*>& actual) {
-    REQUIRE(expected.size() == actual.size());
-
-    for (int i = 0; i < actual.size(); i++) {
-        REQUIRE(expected[i]->equals(actual[i]));
-    }
-}
 
 TEST_CASE("Node constructor") {
     Node* node = new Node("A");

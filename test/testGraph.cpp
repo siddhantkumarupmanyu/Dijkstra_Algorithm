@@ -4,12 +4,9 @@
 #include "Graph.hpp"
 #include "Node.hpp"
 #include "catch_amalgamated.hpp"
+#include "Utils.hpp"
 
 using namespace std;
-
-static void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual);
-
-static void assertEqualEdgeVector(vector<Edge*>& expected, vector<Edge*>& actual);
 
 TEST_CASE("Nodes") {
     Graph* graph = new Graph();
@@ -78,20 +75,4 @@ TEST_CASE("Source Node And Destination Node") {
 
     REQUIRE(nodeA->equals(graph->getSourceNode()));
     REQUIRE(nodeC->equals(graph->getDestinationNode()));
-}
-
-static void assertEqualEdgeVector(vector<Edge*>& expected, vector<Edge*>& actual) {
-    REQUIRE(expected.size() == actual.size());
-
-    for (int i = 0; i < actual.size(); i++) {
-        REQUIRE(expected[i]->equals(actual[i]));
-    }
-}
-
-static void assertEqualNodeVector(vector<Node*>& expected, vector<Node*>& actual) {
-    REQUIRE(expected.size() == actual.size());
-
-    for (int i = 0; i < actual.size(); i++) {
-        REQUIRE(expected[i]->equals(actual[i]));
-    }
 }

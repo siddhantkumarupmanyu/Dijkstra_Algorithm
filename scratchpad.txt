@@ -1,4 +1,7 @@
 
+I should not be doing inline in Utils.hpp,
+    -but if the Util function increases I will create a separate .cpp for Utils
+
 I do not know a better way to test Or design Parser, currently
 
 how do i want to handle file that do not exists
