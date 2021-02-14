@@ -30,7 +30,13 @@ should replace transverseList in Dijkstra to std::list as removing elements can 
 // could use iterator based loop in getSmallestFromTransverseList
 
 
+assertEqualNodeVector and assertEqualEdgeVector are repeated over in testGraph
+
 todo
 // there should be a fail fast in addEdge() if edge does not contain this node
 // i just debugged for 2 hours man 
 // fail fast is very important
+
+//fail fast if both nodes are same in edge; 
+    -it requires to throw exception from constructor...
+    -any other way?
