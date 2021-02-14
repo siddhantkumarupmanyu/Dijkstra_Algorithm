@@ -4,6 +4,8 @@ Graph::Graph() {
 }
 
 Graph::~Graph() {
+    // this code is untested
+    // i don't know how to test this
     deallocateNodes();
     deallocateEdges();
 }
