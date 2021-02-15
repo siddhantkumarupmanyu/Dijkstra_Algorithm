@@ -1,3 +1,13 @@
+// Errors that can happen when parsing
+    -No cost given for edge
+    -different edge costs
+        e.g.
+        A
+            10 B
+        B
+            20 A
+    
+
 
 //optimization
 what i could do instead of finding Node/Edge every getOrAdd();
