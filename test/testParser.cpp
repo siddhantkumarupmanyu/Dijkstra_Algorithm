@@ -52,9 +52,9 @@ TEST_CASE("Simple Parse") {
 
     vector<Edge*> expectedEdge;
     expectedEdge.push_back(new Edge(10, new Node("A"), new Node("B")));
-    // TODO:
-    // assertEqualNodeVector(expectedNode, graph->getNodes());
-    // assertEqualEdgeVector(expectedEdge, graph->getEdges());
+
+    assertEqualNodeVector(expectedNode, graph->getNodes());
+    assertEqualEdgeVector(expectedEdge, graph->getEdges());
 
     tearDown();
 }
