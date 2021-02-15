@@ -9,6 +9,8 @@
 
 using namespace std;
 
+static const int MAX_INT = std::numeric_limits<int>::max();
+
 TEST_CASE("Nodes") {
     Graph* graph = new Graph();
 
@@ -62,11 +64,6 @@ TEST_CASE("Source Node And Destination Node") {
     auto nodeB = new Node("B");
     auto nodeC = new Node("C");
 
-    vector<Node*> expected;
-    expected.push_back(nodeA);
-    expected.push_back(nodeB);
-    expected.push_back(nodeC);
-
     nodeA->setSource(true);
     nodeC->setDestination(true);
 
@@ -76,6 +73,26 @@ TEST_CASE("Source Node And Destination Node") {
 
     REQUIRE(nodeA->equals(graph->getSourceNode()));
     REQUIRE(nodeC->equals(graph->getDestinationNode()));
+}
+
+TEST_CASE("Set Source and Destination Node") {
+    Graph* graph = new Graph();
+
+    auto nodeA = new Node("A");
+    auto nodeB = new Node("B");
+    auto nodeC = new Node("C");
+
+    graph->addNode(nodeA);
+    graph->addNode(nodeB);
+    graph->addNode(nodeC);
+
+    nodeB->setNodeCost(14);
+
+    graph->setSourceAndDestination(nodeA, nodeC);
+
+    REQUIRE(nodeA->equals(graph->getSourceNode()));
+    REQUIRE(nodeC->equals(graph->getDestinationNode()));
+    REQUIRE(nodeB->getNodeCost() == MAX_INT);
 }
 
 TEST_CASE("getOrAddNode") {
@@ -132,8 +149,6 @@ TEST_CASE("Reset Nodes") {
     graph->resetNodes();
 
     vector<Node*> actual = graph->getNodes();
-
-    const int MAX_INT = std::numeric_limits<int>::max();
 
     REQUIRE(actual[0]->getNodeCost() == MAX_INT);
     REQUIRE(actual[1]->getNodeCost() == MAX_INT);

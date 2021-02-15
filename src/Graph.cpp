@@ -33,6 +33,17 @@ void Graph::resetNodes() {
     }
 }
 
+void Graph::setSourceAndDestination(Node* source, Node* destination) {
+    for (auto node : this->nodes) {
+        if (node->equals(source)) {
+            this->sourceNode = node;
+        } else if (node->equals(destination)) {
+            this->destinationNode = node;
+        }
+    }
+    this->resetNodes();
+}
+
 std::vector<Edge*> Graph::getEdges() {
     return this->edges;
 }
