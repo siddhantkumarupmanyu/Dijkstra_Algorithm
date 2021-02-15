@@ -31,10 +31,10 @@ int main(int argc, char *argv[]) {
 
     auto runner = new Dijkstra(graph->getSourceNode(), graph->getDestinationNode());
 
-    vector<Node *> actual = runner->getShortestPathFromDestination();
-    // for (auto node : shortestPath) {
-    //     cout << node->getName() << " --- ";
-    // }
+    vector<Node *> shortestPath = runner->getShortestPathToDestination();
+    for (auto node : shortestPath) {
+        cout << node->getName() << " --- ";
+    }
 
     return 0;
 }
