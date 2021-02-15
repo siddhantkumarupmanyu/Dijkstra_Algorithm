@@ -21,16 +21,18 @@ void Parser::parseInto(Graph* graph) {
     Node* currentNode;
     while (currentLine != "") {
         trimStringEnd(currentLine);
-        if (isEdge(currentLine)) {
-            string currentLineWithoutTab = currentLine.substr(currentLine.find("\t") + 1);
-            vector<string> splittedStrings = splitStringByWhitespace(currentLineWithoutTab);
-            int edgeCost = getEdgeCostFromString(splittedStrings[0]);
-            string otherNodeName = getNodeName(splittedStrings[1]);
-            Node* otherNode = addNode(graph, otherNodeName);
-            addEdge(graph, edgeCost, currentNode, otherNode);
-        } else {
-            string nodeName = getNodeName(currentLine);
-            currentNode = addNode(graph, nodeName);
+        if (currentLine != "\n") {
+            if (isEdge(currentLine)) {
+                string currentLineWithoutTab = currentLine.substr(currentLine.find("\t") + 1);
+                vector<string> splittedStrings = splitStringByWhitespace(currentLineWithoutTab);
+                int edgeCost = getEdgeCostFromString(splittedStrings[0]);
+                string otherNodeName = getNodeName(splittedStrings[1]);
+                Node* otherNode = addNode(graph, otherNodeName);
+                addEdge(graph, edgeCost, currentNode, otherNode);
+            } else {
+                string nodeName = getNodeName(currentLine);
+                currentNode = addNode(graph, nodeName);
+            }
         }
         currentLine = this->reader->nextLine();
     }

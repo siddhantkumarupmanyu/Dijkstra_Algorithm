@@ -31,6 +31,7 @@ class Node {
     std::vector<Edge*>& getConnectedEdges();
     void setEdgeWithShortestPathToSource(Edge* edge);
     Edge* getEdgeWithSortestPathToSource();
+    void reset();
     bool equals(Node* other);
 };
 

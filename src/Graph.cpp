@@ -27,6 +27,12 @@ std::vector<Node*> Graph::getNodes() {
     return this->nodes;
 }
 
+void Graph::resetNodes() {
+    for (auto node : this->nodes) {
+        node->reset();
+    }
+}
+
 std::vector<Edge*> Graph::getEdges() {
     return this->edges;
 }

@@ -1,3 +1,4 @@
+#include <limits>
 #include <vector>
 
 #include "Edge.hpp"
@@ -84,11 +85,6 @@ TEST_CASE("getOrAddNode") {
     auto nodeB = new Node("B");
     auto nodeC = new Node("C");
 
-    vector<Node*> expected;
-    expected.push_back(nodeA);
-    expected.push_back(nodeB);
-    expected.push_back(nodeC);
-
     graph->getOrAddNode(nodeA);
     graph->getOrAddNode(nodeB);
     graph->getOrAddNode(nodeC);
@@ -109,11 +105,6 @@ TEST_CASE("getOrAddEdge") {
     auto B_C = new Edge(16, nodeB, nodeC);
     auto C_A = new Edge(4, nodeC, nodeA);
 
-    vector<Edge*> expected;
-    expected.push_back(A_B);
-    expected.push_back(B_C);
-    expected.push_back(C_A);
-
     graph->getOrAddEdge(A_B);
     graph->getOrAddEdge(B_C);
     graph->getOrAddEdge(C_A);
@@ -121,4 +112,30 @@ TEST_CASE("getOrAddEdge") {
     auto C_ADuplicate = new Edge(4, nodeC, nodeA);
 
     REQUIRE(C_A == graph->getOrAddEdge(C_ADuplicate));
+}
+
+TEST_CASE("Reset Nodes") {
+    Graph* graph = new Graph();
+
+    auto nodeA = new Node("A");
+    auto nodeB = new Node("B");
+    auto nodeC = new Node("C");
+
+    graph->addNode(nodeA);
+    graph->addNode(nodeB);
+    graph->addNode(nodeC);
+
+    nodeA->setNodeCost(10);
+    nodeA->setNodeCost(20);
+    nodeA->setNodeCost(15);
+
+    graph->resetNodes();
+
+    vector<Node*> actual = graph->getNodes();
+
+    const int MAX_INT = std::numeric_limits<int>::max();
+
+    REQUIRE(actual[0]->getNodeCost() == MAX_INT);
+    REQUIRE(actual[1]->getNodeCost() == MAX_INT);
+    REQUIRE(actual[2]->getNodeCost() == MAX_INT);
 }

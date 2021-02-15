@@ -28,6 +28,7 @@ class Graph {
     Node* getDestinationNode();
     Node* getOrAddNode(Node* node);
     Edge* getOrAddEdge(Edge* edge);
+    void resetNodes();
 };
 
 #endif

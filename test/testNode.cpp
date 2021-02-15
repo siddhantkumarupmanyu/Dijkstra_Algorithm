@@ -66,6 +66,14 @@ TEST_CASE("Edge With Sortest Path To Source") {
     REQUIRE(node->getEdgeWithSortestPathToSource()->equals(edge));
 }
 
+TEST_CASE("reset") {
+    Node* node = new Node("A");
+
+    node->reset();
+
+    REQUIRE(node->getNodeCost() == MAX_INT);
+}
+
 TEST_CASE("Transversed") {
     Node* node = new Node("A");
 
