@@ -2,6 +2,8 @@
 
 #include <limits>
 
+#include "Edge.hpp"
+
 using namespace std;
 
 Node::Node(string name) {
@@ -57,7 +59,19 @@ void Node::reset() {
 
 void Node::addEdge(Edge* edge) {
     //TODO: fail fast if one of the node in edge is not this Node
-    this->edges.push_back(edge);
+
+    if (!contains(edge)) {
+        this->edges.push_back(edge);
+    }
+}
+
+bool Node::contains(Edge* edgeToFind) {
+    for (auto edge : this->edges) {
+        if (edge->equals(edgeToFind)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 vector<Edge*>& Node::getConnectedEdges() {

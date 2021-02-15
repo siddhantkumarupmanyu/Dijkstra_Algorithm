@@ -28,6 +28,7 @@ class Node {
     bool isTransversed();
     void setTransversed(bool value);
     void addEdge(Edge* edge);
+    bool contains(Edge* edge);
     std::vector<Edge*>& getConnectedEdges();
     void setEdgeWithShortestPathToSource(Edge* edge);
     Edge* getEdgeWithSortestPathToSource();

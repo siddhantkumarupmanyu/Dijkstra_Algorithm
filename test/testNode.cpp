@@ -47,6 +47,8 @@ TEST_CASE("Add Edge") {
 
     node->addEdge(new Edge(10, new Node("B"), node));
     node->addEdge(new Edge(11, new Node("C"), node));
+    node->addEdge(new Edge(11, new Node("C"), node));
+    node->addEdge(new Edge(11, new Node("C"), node));
 
     vector<Edge*> expected;
     expected.push_back(new Edge(10, new Node("B"), node));

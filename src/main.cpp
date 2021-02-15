@@ -24,10 +24,14 @@ int main(int argc, char *argv[]) {
 
     parser->parseInto(graph);
 
-    // auto algorithm = new Dijkstra(graph->getSourceNode(), graph->getDestinationNode());
+    graph->setSourceAndDestination(new Node("A"), new Node("J"));
 
-    // vector<Node *> shortestPath = algorithm->getShortestPathToDestination();
+    // cout << "Source Node" << graph->getSourceNode()->getName() << endl;
+    // cout << "Destination Node" << graph->getDestinationNode()->getName() << endl;
 
+    auto runner = new Dijkstra(graph->getSourceNode(), graph->getDestinationNode());
+
+    vector<Node *> actual = runner->getShortestPathFromDestination();
     // for (auto node : shortestPath) {
     //     cout << node->getName() << " --- ";
     // }

@@ -39,7 +39,10 @@ void Parser::parseInto(Graph* graph) {
 }
 
 Edge* Parser::addEdge(Graph* graph, int edgeCost, Node* currentNode, Node* otherNode) {
-    return graph->getOrAddEdge(new Edge(edgeCost, currentNode, otherNode));
+    Edge* edge = graph->getOrAddEdge(new Edge(edgeCost, currentNode, otherNode));
+    currentNode->addEdge(edge);
+    otherNode->addEdge(edge);
+    return edge;
 }
 
 Node* Parser::addNode(Graph* graph, string nodeName) {

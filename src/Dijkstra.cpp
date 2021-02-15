@@ -1,6 +1,7 @@
 #include "Dijkstra.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -103,7 +104,13 @@ void Dijkstra::fillShortestPath() {
     Node* currentNode = destinationNode;
     while (!currentNode->isSource()) {
         shortestPathFromDestination.push_back(currentNode);
-        auto edge = currentNode->getEdgeWithSortestPathToSource();
+
+
+        auto edge = currentNode->getEdgeWithSortestPathToSource(); // this line is causing seg fault in ./run
+
+        // cout << edge->getFirstNode()->getName() << endl;
+        // cout << edge->getSecondNode()->getName() << endl;
+
         currentNode = edge->getOtherNode(currentNode);
     }
 
