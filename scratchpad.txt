@@ -1,3 +1,8 @@
+//Algorithm
+    throw exception
+    if source is not connected to anything
+    if destination is not connected to anything
+
 // Errors that can happen when parsing
     -No cost given for edge
     -different edge costs
